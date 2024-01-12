@@ -53,7 +53,6 @@ loadDependencies([
 	{tag: 'script', src: 'https://cdn.jsdelivr.net/npm/marked/marked.min.js', crossorigin: 'anonymous', referrerpolicy: 'no-referrer'}],
 	async () => {
 		window.config = await getConfig()
-		console.log(window.config)
     if (window.config.stylesheets) {
 		let stylesheets = window.config.stylesheets.map(ss => {
 			let href = ss.indexOf('http') == 0
@@ -68,6 +67,7 @@ loadDependencies([
 				structureContent()
 				defineCustomElements()
 				setMeta()
+				console.log(window.config)
 				observeVisible()
 			}
 		)
@@ -75,6 +75,7 @@ loadDependencies([
 		structureContent()
 		defineCustomElements()
 		setMeta()
+		console.log(window.config)
 		observeVisible()
 	}
 })
