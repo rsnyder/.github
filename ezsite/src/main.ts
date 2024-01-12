@@ -40,7 +40,7 @@ function defineCustomElements() {
 	// customElements.define('ez-trigger', defineCustomElement(Trigger))
 }
 
-import { getConfig, loadDependencies, md2html, structureContent, observeVisible } from './utils'
+import { getConfig, setMeta, loadDependencies, md2html, structureContent, observeVisible } from './utils'
 export { md2html }
 let window = (globalThis as any).window as any
 window.md2html = md2html
@@ -67,8 +67,14 @@ loadDependencies([
 			() => {
 				structureContent()
 				defineCustomElements()
+				setMeta()
 				observeVisible()
 			}
 		)
-	} else structureContent()
+	} else {
+		structureContent()
+		defineCustomElements()
+		setMeta()
+		observeVisible()
+	}
 })

@@ -205,7 +205,6 @@ export async function getConfig() {
     isGHP, 
     baseurl
   }
-  window.config.meta = setMeta(window.config)
   if (isGHP) {
     if (!window.config.owner) window.config.owner = location.hostname.split('.')[0]
     if (!window.config.repo) window.config.repo = location.pathname.split('/')[1]
@@ -213,8 +212,7 @@ export async function getConfig() {
   return window.config
 }
 
-function setMeta(config:any) {
-  console.log('setMeta', config)
+export function setMeta() {
   let meta
   let header
   Array.from(document.getElementsByTagName('*')).forEach(el => {
@@ -235,16 +233,16 @@ function setMeta(config:any) {
 
   let title = meta?.getAttribute('title')
     ? meta.getAttribute('title')
-    : config.title
-      ? config.title
+    : window.config.title
+      ? window.config.title
       : header?.getAttribute('label')
         ? header.getAttribute('label')
         : firstHeading || ''
 
   let description =  meta?.getAttribute('description')
     ? meta.getAttribute('description')
-    : config.description
-      ? config.description
+    : window.config.description
+      ? window.config.description
       : firstParagraph || ''
 
   let robots =  meta?.getAttribute('robots') || (location.hostname.indexOf('www') === 0 ? '' : 'noindex, nofollow')
@@ -268,7 +266,7 @@ function setMeta(config:any) {
   if (meta && meta.getAttribute('ve-config') === null) meta.remove()
   if (jldEl) jldEl.innerText = JSON.stringify(seo)
 
-  return({title, description, robots, seo})
+  window.config = {...window.config, ...{title, description, robots, seo}}
 }
 
 export async function getHtml() {
