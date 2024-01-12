@@ -193,7 +193,9 @@ export async function getConfig() {
     location.hostname === 'localhost' ? 'http://localhost:8080/ezsite/default_config.yml' : `${baseurl}/ezsite/default_config.yml`
   ]
   for (const configUrl of configUrls) {
+    console.log(configUrl)
     let resp = await fetch(configUrl)
+    console.log(resp)
     if (resp.ok) configExtras = window.jsyaml.load(await resp.text())
     if (resp.ok) break
   }
