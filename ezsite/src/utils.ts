@@ -251,9 +251,13 @@ export function setMeta() {
     document.title = title
     seo.name = title
     seo.headline = title
+    document.querySelector('meta[name="og:title"]')?.setAttribute('content', title)
+    document.querySelector('meta[name="og:site_name"]')?.setAttribute('content', title)
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title)
   }
   if (description) {
     document.querySelector('meta[name="description"]')?.setAttribute('content', description)
+    document.querySelector('meta[name="og:description"]')?.setAttribute('content', description)
     seo.description = description
   }
   if (robots) {
