@@ -186,6 +186,7 @@ async function getFooterHtml() {
 }
 
 export async function getConfig() {
+  console.log(window.config)
   let configExtras: any = {}
   let baseurl = window?.config?.baseurl || `/${location.pathname.split('/')[1]}`
   const configUrls = [
