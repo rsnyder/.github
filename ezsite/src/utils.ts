@@ -191,13 +191,14 @@ export async function getConfig() {
     ? window.config?.baseurl
     : isGHP ? `/${location.pathname.split('/')[1]}` : ''
   const configUrls = [
-    location.hostname === 'localhost' ? 'http://localhost:8080/config.yml' : `${baseurl}/config.yml`,
-    location.hostname === 'localhost' ? 'http://localhost:8080/ezsite/default_config.yml' : `${baseurl}/ezsite/default_config.yml`
+    location.hostname === 'localhost' ? 'http://localhost:8080/ezsite/default_config.yml' : `${baseurl}/ezsite/default_config.yml`,
+    location.hostname === 'localhost' ? 'http://localhost:8080/config.yml' : `${baseurl}/config.yml`
   ]
   for (const configUrl of configUrls) {
     let resp = await fetch(configUrl)
-    if (resp.ok) configExtras = window.jsyaml.load(await resp.text())
-    if (resp.ok) break
+    if (resp.ok) {
+      configExtras = {...configExtras, ...window.jsyaml.load(await resp.text())}
+    }
   }
   window.config = {
     ...window.config,
@@ -252,12 +253,12 @@ export function setMeta() {
     seo.name = title
     seo.headline = title
     document.querySelector('meta[name="og:title"]')?.setAttribute('content', title)
-    document.querySelector('meta[name="og:site_name"]')?.setAttribute('content', title)
-    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title)
+    document.querySelector('meta[property="og:site_name"]')?.setAttribute('content', title)
+    document.querySelector('meta[property="twitter:title"]')?.setAttribute('content', title)
   }
   if (description) {
     document.querySelector('meta[name="description"]')?.setAttribute('content', description)
-    document.querySelector('meta[name="og:description"]')?.setAttribute('content', description)
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', description)
     seo.description = description
   }
   if (robots) {
@@ -270,7 +271,7 @@ export function setMeta() {
   if (meta && meta.getAttribute('ve-config') === null) meta.remove()
   if (jldEl) jldEl.innerText = JSON.stringify(seo)
 
-  window.config = {...window.config, ...{title, description, robots, seo}}
+  window.config = {...window.config, ...{meta: {title, description, robots, seo}}}
 }
 
 export async function getHtml() {
