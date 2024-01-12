@@ -222,13 +222,11 @@ export function setMeta() {
     else if (el.tagName.split('-')[1] === 'HEADER') header = el
   })
   if (!meta) meta = document.querySelector('param[ve-config]')
-  console.log('meta', meta)
 
   let firstHeading = (document.querySelector('h1, h2, h3') as HTMLElement)?.innerText.trim()
   let firstParagraph = document.querySelector('p')?.innerText.trim()
   
   let jldEl = document.querySelector('script[type="application/ld+json"]') as HTMLElement
-  console.log('jldEl', jldEl)
   let seo = jldEl ? JSON.parse(jldEl.innerText) : {'@context':'https://schema.org', '@type':'WebSite', description:'', headline:'', name:'', url:''}
   seo.url = location.href
 
