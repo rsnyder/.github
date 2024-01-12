@@ -202,10 +202,10 @@ export async function getConfig() {
   window.config = {
     ...window.config,
     ...configExtras,
-    meta: setMeta(),
     isGHP, 
     baseurl
   }
+  window.config.meta = setMeta(window.config)
   if (isGHP) {
     if (!window.config.owner) window.config.owner = location.hostname.split('.')[0]
     if (!window.config.repo) window.config.repo = location.pathname.split('/')[1]
@@ -213,7 +213,8 @@ export async function getConfig() {
   return window.config
 }
 
-function setMeta() {
+function setMeta(config:any) {
+  console.log('setMeta', config)
   let meta
   let header
   Array.from(document.getElementsByTagName('*')).forEach(el => {
@@ -222,23 +223,29 @@ function setMeta() {
     else if (el.tagName.split('-')[1] === 'HEADER') header = el
   })
   if (!meta) meta = document.querySelector('param[ve-config]')
+  console.log('meta', meta)
 
   let firstHeading = (document.querySelector('h1, h2, h3') as HTMLElement)?.innerText.trim()
   let firstParagraph = document.querySelector('p')?.innerText.trim()
   
   let jldEl = document.querySelector('script[type="application/ld+json"]') as HTMLElement
+  console.log('jldEl', jldEl)
   let seo = jldEl ? JSON.parse(jldEl.innerText) : {'@context':'https://schema.org', '@type':'WebSite', description:'', headline:'', name:'', url:''}
   seo.url = location.href
 
   let title = meta?.getAttribute('title')
     ? meta.getAttribute('title')
-    : header?.getAttribute('title')
-      ? header.getAttribute('title')
-      : firstHeading || ''
+    : config.title
+      ? config.title
+      : header?.getAttribute('label')
+        ? header.getAttribute('label')
+        : firstHeading || ''
 
   let description =  meta?.getAttribute('description')
     ? meta.getAttribute('description')
-    : firstParagraph || ''
+    : config.description
+      ? config.description
+      : firstParagraph || ''
 
   let robots =  meta?.getAttribute('robots') || (location.hostname.indexOf('www') === 0 ? '' : 'noindex, nofollow')
 
