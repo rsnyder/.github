@@ -188,7 +188,12 @@ async function getFooterHtml() {
 export async function getConfig() {
   console.log(window.config)
   let configExtras: any = {}
-  let baseurl = window?.config?.baseurl || `/${location.pathname.split('/')[1]}`
+  let baseurl = window.config?.baseurl !== undefined
+    ? window.config?.baseurl
+    : isGHP
+      ? `/${location.pathname.split('/')[1]}`
+      : ''
+  console.log(`baseurl=${baseurl}`)
   const configUrls = [
     location.hostname === 'localhost' ? 'http://localhost:8080/config.yml' : `${baseurl}/config.yml`,
     location.hostname === 'localhost' ? 'http://localhost:8080/ezsite/default_config.yml' : `${baseurl}/ezsite/default_config.yml`
