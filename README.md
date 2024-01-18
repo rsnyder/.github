@@ -1,4 +1,4 @@
-> ez-meta title="Title from meta" description="Description from Meta" robots="noindex, nofollow"
+`ez-meta title="Title from meta" description="Description from Meta" robots="noindex, nofollow"`
 
 # rsnyderjr.com
 
