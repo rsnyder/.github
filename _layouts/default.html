@@ -1,5 +1,9 @@
 <!doctype html>
+<meta charset=utf-8>
+{%- seo -%}
+<title>{{ page.title }}</title>
+<link href="https://rsnyder.github.io/ezsite/ezsite/dist/img/favicon.ico" rel="icon" />
 <link href="https://rsnyder.github.io/ezsite/ezsite/dist/css/index.css" rel="stylesheet">
-<script>window.config = {baseurl: '{{ site.baseurl }}'}</script>
+<script>window.config = {baseurl: '{{ site.baseurl }}', 'page.title':'{{page.title}}', 'site.title':'{{site.title}}', 'site.github.repository_name':'{{site.github.repository_name}}'}</script>
 <script src="https://rsnyder.github.io/ezsite/ezsite/dist/js/index.js" type="module"></script>
 <main>{{ content }}</main>
