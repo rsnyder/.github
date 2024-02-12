@@ -1,6 +1,3 @@
----
-custom: variable
----
 <!doctype html><html lang=en><meta charset=utf-8>{%- seo -%}
 <link href="https://rsnyder.github.io/ezsite/ezsite/dist/img/favicon.ico" rel="icon" />
 <link rel="apple-touch-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Website_logo_1.png/240px-Website_logo_1.png">
@@ -11,9 +8,6 @@ custom: variable
   baseurl: '{{ site.baseurl }}',
   title: 'SCHH',
   description: 'Website framework using Markdown, Github Pages, and custom web components.',
-  page: '{{ page }}',
-  site: '{{ site }}',
-  custom: '{{ site.custom }}',
   defaults: {
     header: {
       backgroundImage: 'wc:Mont_Blanc_from_Les_Arcs_1950.jpg',
@@ -39,6 +33,7 @@ custom: variable
 }</script>
 
 <main class="page-content" aria-label="Content" style="display:none;">
+  <ez-header></ez-header>
   {{ content }}
 </main>
 
