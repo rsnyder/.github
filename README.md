@@ -3,7 +3,7 @@
 First paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ```
-ve-map center="32.325,-80.96302" zoom="15"
+ez-map center="32.325,-80.96302" zoom="15"
 Q83813 layer="Savannah" prefer-geojson disabled
 Q47716 layer="Charleston" prefer-geojson disabled
 Q813376 layer="Beaufort" prefer-geojson disabled
