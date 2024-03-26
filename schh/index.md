@@ -2,6 +2,6 @@
 layout: schh
 ---
 
-`ez-breadcrumbs`
+`mdp-breadcrumbs`
 
 - [Maps](maps)

@@ -1,3 +1,3 @@
-`ez-breadcrumbs`
+`mdp-breadcrumbs`
 
 - [Sun City - Hilton Head](/schh)

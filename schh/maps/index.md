@@ -1,3 +1,3 @@
-`ez-breadcrumbs`
+`mdp-breadcrumbs`
 
 - [Main](main)
