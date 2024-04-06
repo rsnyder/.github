@@ -1,7 +1,7 @@
 `mdp-breadcrumbs`
 
 ```
-mdp-map center="32.28661,-80.94707" zoom="14"
+mdp-map center="32.30724,-80.95511" zoom="14"
 Q83813 layer="Savannah" prefer-geojson disabled
 Q47716 layer="Charleston" prefer-geojson disabled
 Q813376 layer="Beaufort" prefer-geojson disabled
